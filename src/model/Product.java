@@ -12,9 +12,11 @@ public abstract class Product {
 	private String counttryOfOrigin;
 	private LocalDate boughtDate;
 	private List<SalesPrice> prices;
+	private Supplier supplier;
+
 	
 	public Product(String name, String description, String ean, double purchasePrice, String counttryOfOrigin,
-			LocalDate boughtDate) {
+			LocalDate boughtDate, Supplier supplier) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -22,9 +24,11 @@ public abstract class Product {
 		this.purchasePrice = purchasePrice;
 		this.counttryOfOrigin = counttryOfOrigin;
 		this.boughtDate = boughtDate;
+		this.supplier = supplier;
 		this.prices = new ArrayList<>();
 	}
 	
+
 	//returns null if price is less than zero
 	public SalesPrice createSalesPrice(double amount, LocalDate startDate) { 
 		SalesPrice newPrice = null;
@@ -43,6 +47,21 @@ public abstract class Product {
 	}
 	
 	//auto generated stuff that way v 
+	public List<SalesPrice> getPrices() {
+		return prices;
+	}
+	
+	public void setPrices(List<SalesPrice> prices) {
+		this.prices = prices;
+	}
+	
+	public Supplier getSupplier() {
+		return supplier;
+	}
+	
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
 	public String getName() {
 		return name;
 	}

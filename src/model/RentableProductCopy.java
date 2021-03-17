@@ -12,7 +12,7 @@ public class RentableProductCopy {
 		this.availibility = availibility;
 		this.product = product;
 	}
-
+	//Returns the price of the original product not the copy
 	public double getPrice() {
 		return this.product.getPrice();
 	}

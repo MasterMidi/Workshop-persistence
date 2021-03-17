@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.ShelfLine;
 
 public class SellableProduct {
 	private int minStock;
@@ -11,11 +10,16 @@ public class SellableProduct {
 	private List<ShelfLine> shelfLines;
 	
 
-	public SellableProduct(int minStock, Product product) {
+	public SellableProduct(int minStock, Product product, List<ShelfLine> shelfLines) {
 		super();
 		this.minStock = minStock;
 		this.product = product;
-		this.shelfLines = new ArrayList<>();
+		this.shelfLines = shelfLines;
+		this.updateStock();
+	}
+	
+	public SellableProduct(int minStock, Product product) {
+		this(minStock, product, new ArrayList<>());
 	}
 	
 	public int updateStock() {

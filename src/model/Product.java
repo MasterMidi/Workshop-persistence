@@ -16,7 +16,7 @@ public abstract class Product {
 
 	
 	public Product(String name, String description, String ean, double purchasePrice, String counttryOfOrigin,
-			LocalDate boughtDate, Supplier supplier) {
+			LocalDate boughtDate, Supplier supplier, List<SalesPrice> prices) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -25,10 +25,9 @@ public abstract class Product {
 		this.counttryOfOrigin = counttryOfOrigin;
 		this.boughtDate = boughtDate;
 		this.supplier = supplier;
-		this.prices = new ArrayList<>();
+		this.prices = prices;
 	}
 	
-
 	//returns null if price is less than zero
 	public SalesPrice createSalesPrice(double amount, LocalDate startDate) { 
 		SalesPrice newPrice = null;

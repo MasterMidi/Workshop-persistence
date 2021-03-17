@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GunReplica extends Product {
 
@@ -8,10 +10,15 @@ public class GunReplica extends Product {
 	private String material;
 	
 	public GunReplica(String name, String description, String ean, double purchasePrice, String counttryOfOrigin,
-			LocalDate boughtDate, String calibre, String material,Supplier supplier) {
-		super(name, description, ean, purchasePrice, counttryOfOrigin, boughtDate, supplier);
+			LocalDate boughtDate, String calibre, String material,Supplier supplier, List<SalesPrice> prices) {
+		super(name, description, ean, purchasePrice, counttryOfOrigin, boughtDate, supplier, prices);
 		this.calibre = calibre;
 		this.material = material;
+	}
+	
+	public GunReplica(String name, String description, String ean, double purchasePrice, String counttryOfOrigin,
+			LocalDate boughtDate, String calibre, String material,Supplier supplier) {
+		this(material, material, material, purchasePrice, material, boughtDate, material, material, supplier, new ArrayList<>());
 	}
 
 	public String getCalibre() {

@@ -3,12 +3,25 @@ package model;
 public class ShelfLine {
 	private int quiatity;
 	private SellableProduct product;
+	private Shelf shelf;
 	
-	public ShelfLine(int quiatity, SellableProduct product) {
+	public ShelfLine(int quiatity, SellableProduct product, Shelf shelf) {
 		super();
+		this.shelf = shelf;
 		this.quiatity = quiatity;
 		this.product = product;
 	}
+	
+
+	public Shelf getShelf() {
+		return shelf;
+	}
+
+
+	public void setShelf(Shelf shelf) {
+		this.shelf = shelf;
+	}
+
 
 	public int getQuiatity() {
 		return quiatity;

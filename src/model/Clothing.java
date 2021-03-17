@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Clothing extends Product {
 	private String size;
@@ -8,12 +10,16 @@ public class Clothing extends Product {
 	
 	
 	public Clothing(String name, String description, String ean, double purchasePrice, String counttryOfOrigin,
-			LocalDate boughtDate, String size, String color,Supplier supplier) {
-		super(name, description, ean, purchasePrice, counttryOfOrigin, boughtDate, supplier);
+			LocalDate boughtDate, String size, String color,Supplier supplier, List<SalesPrice> prices) {
+		super(name, description, ean, purchasePrice, counttryOfOrigin, boughtDate, supplier, prices);
 		this.size = size;
 		this.color = color;
 	}
 
+	public Clothing(String name, String description, String ean, double purchasePrice, String counttryOfOrigin,
+			LocalDate boughtDate, String size, String color,Supplier supplier) {
+		this(color, color, color, purchasePrice, color, boughtDate, color, color, supplier, new ArrayList<>());
+	}
 
 	public String getSize() {
 		return size;

@@ -8,8 +8,8 @@ public class Clothing extends Product {
 	
 	
 	public Clothing(String name, String description, String ean, double purchasePrice, String counttryOfOrigin,
-			LocalDate boughtDate, String size, String color) {
-		super(name, description, ean, purchasePrice, counttryOfOrigin, boughtDate);
+			LocalDate boughtDate, String size, String color,Supplier supplier) {
+		super(name, description, ean, purchasePrice, counttryOfOrigin, boughtDate, supplier);
 		this.size = size;
 		this.color = color;
 	}

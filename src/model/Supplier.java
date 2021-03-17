@@ -1,15 +1,25 @@
 package model;
 
 public class Supplier {
+	private String cvr;
 	private String contactName;
 	private String contactPhone;
 	private ContactInfo contactInfo;
 	
-	public Supplier(String contactName, String contactPhone, ContactInfo contactInfo) {
+	public Supplier(String cvr, String contactName, String contactPhone, ContactInfo contactInfo) {
 		super();
+		this.cvr = cvr;
 		this.contactName = contactName;
 		this.contactPhone = contactPhone;
 		this.contactInfo = contactInfo;
+	}
+
+	public String getCvr() {
+		return cvr;
+	}
+
+	public void setCvr(String cvr) {
+		this.cvr = cvr;
 	}
 
 	public String getContactName() {

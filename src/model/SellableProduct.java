@@ -1,16 +1,37 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.ShelfLine;
+
 public class SellableProduct {
 	private int minStock;
 	private int stock;
 	private Product product;
+	private List<ShelfLine> shelfLines;
 	
 
-	public SellableProduct(int minStock, int stock, Product product) {
+	public SellableProduct(int minStock, Product product) {
 		super();
 		this.minStock = minStock;
-		this.stock = stock;
 		this.product = product;
+		this.shelfLines = new ArrayList<>();
+	}
+	
+	public int updateStock() {
+		int res = this.shelfLines.stream()
+				.mapToInt(item -> item.getQuiatity())
+				.sum();
+		this.stock = res;
+		return res;
+	}
+
+	public List<ShelfLine> getShelfLines() {
+		return shelfLines;
+	}
+
+	public void setShelfLines(List<ShelfLine> shelfLines) {
+		this.shelfLines = shelfLines;
 	}
 
 	public int getMinStock() {
@@ -20,9 +41,9 @@ public class SellableProduct {
 	public void setMinStock(int minStock) {
 		this.minStock = minStock;
 	}
-
+	
 	public int getStock() {
-		return stock;
+		return this.stock;
 	}
 
 	public void setStock(int stock) {

@@ -1,5 +1,3 @@
-
-
 import db.DBConnection;
 import db.DataAccessException;
 import Enviroment.ENV;
@@ -17,7 +15,7 @@ public class Main {
 			DBConnection.getInstance();
 		} catch (DataAccessException e) {
 			System.out.println("sadge");
-		}
+		} 
 		System.out.println("Happii");
 	}
 

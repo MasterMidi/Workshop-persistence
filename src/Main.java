@@ -1,4 +1,5 @@
 import java.util.List;
+
 import Controller.OrderController;
 import Enums.OrderType;
 import Enviroment.ENV;
@@ -25,6 +26,7 @@ public class Main {
 	for (SellableProduct curr : products) {
 	    System.out.println(curr.getProduct().getName());
 	}
+
 	System.out.println("END");
     }
 

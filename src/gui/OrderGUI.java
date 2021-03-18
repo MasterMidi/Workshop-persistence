@@ -45,13 +45,13 @@ public class OrderGUI extends JFrame {
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel_products = new JPanel();
-		tabbedPane.addTab("Products", null, panel_products, null);
+		tabbedPane.addTab("Produkter", null, panel_products, null);
 		
 		JPanel panel_customers = new JPanel();
-		tabbedPane.addTab("Customers", null, panel_customers, null);
+		tabbedPane.addTab("Kunder", null, panel_customers, null);
 		
 		JPanel panel_orders = new pCreateOrder();
-		tabbedPane.addTab("Orders", null, panel_orders, null);
+		tabbedPane.addTab("Ordrer", null, panel_orders, null);
 		
 		JPanel panel_invoices = new JPanel();
 		tabbedPane.addTab("Invoices", null, panel_invoices, null);

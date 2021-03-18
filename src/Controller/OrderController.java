@@ -1,9 +1,9 @@
-package Controller;
+package controller;
 
 import java.util.List;
 
-import Enums.OrderType;
 import db.DataAccessException;
+import enums.OrderType;
 import model.Customer;
 import model.Order;
 import model.OrderLine;
@@ -15,10 +15,12 @@ import model.SellableProduct;
 public class OrderController {
     private Order order;
     private ProductController prodCtrl;
+    CustomerController customerController;
 
     public OrderController(OrderType orderType) {
 	createOrder(orderType);
 	this.prodCtrl = new ProductController();
+	this.customerController = new CustomerController();
 
     }
 
@@ -50,9 +52,9 @@ public class OrderController {
 	return res;
     }
     
-    public Customer findCustomer(String phoneNr)
+    public Customer findCustomer(String phoneNr) throws DataAccessException
     {
-    	CustomerController customerController = new CustomerController();
+    	
     	return customerController.findCustomer(phoneNr);
     }
 

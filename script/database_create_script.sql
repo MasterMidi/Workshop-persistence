@@ -1,6 +1,14 @@
 use dmab0920_1086225;
 
-exec sp_MSforeachtable @command1 = "DROP TABLE ?";
+--repeat until no more errors
+declare @count int;
+set @count = 1;
+while @count <= 5
+begin
+	print @count;
+	exec sp_MSforeachtable @command1 = "DROP TABLE ?";
+	set @count = @count + 1;
+end;
 go
 
 create table discount_group(
@@ -13,6 +21,10 @@ create table contact_info(
 	id int primary key identity(1,1),
 	name varchar(50) unique not null,
 	address varchar(50),
+	phone_number varchar(9),
+	email varchar(50),
+	zipcode int,
+	city varchar(50)
 );
 
 create table customer(
@@ -65,30 +77,6 @@ create table sale_order(
 	constraint fk_sale_order_id foreign key(id) references [order](id)
 );
 
-create table [location](
-	id int primary key identity(1,1),
-	name varchar(50) unique not null,
-	address varchar(100),
-	zipcode int
-);
-
-create table shelf(
-	id int primary key identity(1,1),
-	number int not null,
-	level int not null,
-	location_id int not null,
-	unique(number, level, location_id),
-	constraint fk_shelf_location_id foreign key(location_id) references location(id)
-);
-
-create table shelf_line(
-	id int primary key identity(1,1),
-	shelf_id int not null,
-	product_id int not null,
-	quantity int,
-	unique(shelf_id, product_id)
-);
-
 create table product(
 	id int primary key identity(1,1),
 	ean int unique not null,
@@ -100,18 +88,26 @@ create table product(
 	supplier_id int,
 	type int,
 	clothing_size int,
-	clothing_color varchar(9),
+	clothing_color varchar(50),
 	equipment_type varchar(100),
 	gun_replica_cilbre int,
 	gun_replica_material varchar(50),
 	constraint fk_product_supplier_id foreign key(supplier_id) references supplier(id)
 );
 
-create table sellable_product(
+create table [location](
 	id int primary key identity(1,1),
-	product_id int unique not null,
-	min_stock int,
-	constraint fk_sellable_product_id foreign key(product_id) references product(id)
+	name varchar(50) unique not null,
+	address varchar(100),
+	zipcode int
+);
+
+create table shelf(
+	id int primary key identity(1,1),
+	number int not null,
+	location_id int not null,
+	unique(number, location_id),
+	constraint fk_shelf_location_id foreign key(location_id) references location(id)
 );
 
 create table rentable_product_copy(
@@ -122,6 +118,24 @@ create table rentable_product_copy(
 	product_id int,
 	constraint fk_rentable_product_id foreign key(product_id) references product(id),
 	constraint fk_rentable_shelf_id foreign key(shelf_id) references shelf(id)
+);
+
+create table sellable_product(
+	id int primary key identity(1,1),
+	product_id int unique not null,
+	min_stock int,
+	constraint fk_sellable_product_id foreign key(product_id) references product(id)
+);
+
+create table shelf_line(
+	id int primary key identity(1,1),
+	shelf_id int not null,
+	product_id int not null,
+	quantity int not null,
+	level int not null,
+	unique(shelf_id, product_id, level),
+	constraint fk_shelfline_product_id foreign key(product_id) references sellable_product(id),
+	constraint fk_shelfline_shelf_id foreign key(shelf_id) references shelf(id)
 );
 
 create table rental_connection(
@@ -145,7 +159,7 @@ create table orderline(
 create table sale_price(
 	amount int not null,
 	start_date date,
-	product_ean int,
-	primary key(start_date, product_ean),
-	constraint fk_price_product_ean foreign key(product_ean) references product(ean)
+	product_id int,
+	primary key(start_date, product_id),
+	constraint fk_price_product_id foreign key(product_id) references product(id)
 );

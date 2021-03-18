@@ -37,11 +37,11 @@ public class DatabaseProduct implements IDbProduct {
 
 	} catch (SQLException ex) {
 	    ex.printStackTrace();
-	} finally //TODO: Discuss whether this should be removed or not
+	} /*finally //TODO: Discuss whether this should be removed or not. no?? because then we cant use the db anymore, since there only is one connection, sinceDBConnection is singleton
 
 	{
 	    DBConnection.getInstance().disconnect();
-	}
+	}*/
 
 	return res;
     }
@@ -74,7 +74,7 @@ public class DatabaseProduct implements IDbProduct {
 	case 2:
 	    currentProduct = new GunReplica(rs.getString("name"), rs.getString("description"), rs.getInt("ean"),
 		    rs.getDouble("purchase_price"), rs.getString("country_of_origin"), rs.getDate("bought_date").toLocalDate(),
-		    rs.getInt("gun_replica_cilbre"), rs.getString("gun_replica_material"), emptySupplier, getProductPrices(rs.getInt("id")));
+		    rs.getInt("gun_replica_caliber"), rs.getString("gun_replica_material"), emptySupplier, getProductPrices(rs.getInt("id")));
 	    break;
 	case 3:
 	    currentProduct = new Equipment(rs.getString("name"), rs.getString("description"), rs.getInt("ean"),

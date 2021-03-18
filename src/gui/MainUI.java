@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import gui.tab.pCreateOrder;
 
-public class OrderGUI extends JFrame {
+public class MainUI extends JFrame {
 
 	private JPanel contentPane;
 
@@ -21,7 +21,7 @@ public class OrderGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					OrderGUI frame = new OrderGUI();
+					MainUI frame = new MainUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +33,7 @@ public class OrderGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OrderGUI() {
+	public MainUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 736, 540);
 		contentPane = new JPanel();

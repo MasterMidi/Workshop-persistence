@@ -6,6 +6,7 @@ import Enums.OrderType;
 import db.DataAccessException;
 import model.Customer;
 import model.Order;
+import model.OrderLine;
 import model.RentableProductCopy;
 import model.RentalOrder;
 import model.SaleOrder;
@@ -41,7 +42,12 @@ public class OrderController {
     public void addSellableProduct(int id, int quantity) {
 	SellableProduct product = prodCtrl.getSellableProduct(id);
 	((SaleOrder) this.order).addNewOrderline(product, quantity);
+    }
 
+    public List<OrderLine> getOrderlinesSaleOrder() {
+	List<OrderLine> res = null;
+	res = ((SaleOrder) this.order).getOrderLines();
+	return res;
     }
     
     public Customer findCustomer(String phoneNr)

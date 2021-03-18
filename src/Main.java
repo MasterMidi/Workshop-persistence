@@ -5,6 +5,7 @@ import Enums.OrderType;
 import Enviroment.ENV;
 import db.DBConnection;
 import db.DataAccessException;
+import model.OrderLine;
 import model.SellableProduct;
 
 public class Main {
@@ -25,6 +26,14 @@ public class Main {
 	List<SellableProduct> products = orderCon.searchSellableProducts("shirt");
 	for (SellableProduct curr : products) {
 	    System.out.println(curr.getProduct().getName());
+	}
+
+	orderCon.addSellableProduct(products.get(0).getProduct().getEan(), 10);
+
+	List<OrderLine> Orderlines = orderCon.getOrderlinesSaleOrder();
+	for (OrderLine curr : Orderlines) {
+	    System.out.println(curr.getProduct().getProduct().getName());
+	    System.out.println(curr.getPrice());
 	}
 
 	System.out.println("END");

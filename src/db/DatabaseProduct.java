@@ -13,6 +13,7 @@ import model.Clothing;
 import model.Equipment;
 import model.GunReplica;
 import model.Product;
+import model.RentableProductCopy;
 import model.SalesPrice;
 import model.SellableProduct;
 import model.Supplier;
@@ -45,7 +46,7 @@ public class DatabaseProduct implements IDbProduct {
 	return res;
     }
 
-    public List<Product> searchProductRentable(String name) throws DataAccessException {
+    public List<RentableProductCopy> searchProductRentable(String name) throws DataAccessException {
 	// TODO: Function not implemented
 	return null;
     }
@@ -85,12 +86,6 @@ public class DatabaseProduct implements IDbProduct {
 	res = new SellableProduct(rs.getInt("sp_min_stock"), currentProduct);
 	return res;
     }
-
-    @Override
-    public List<Product> searchProduct(String name) throws DataAccessException {
-	// TODO Auto-generated method stub
-	return null;
-    }
     
 	public List<SalesPrice> getProductPrices(int id) throws DataAccessException {
     	List<SalesPrice> res = new ArrayList<SalesPrice>();
@@ -106,8 +101,7 @@ public class DatabaseProduct implements IDbProduct {
 
 			
 		} catch (Exception e) {
-			// TODO: handle exception
-		} finally {
+			
 		}
     	return res;
     }

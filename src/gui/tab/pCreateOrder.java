@@ -15,18 +15,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
+import controller.OrderController;
 import gui.components.JHintTextField;
 import model.OrderLine;
-import javax.swing.JLabel;
 
 public class pCreateOrder extends JPanel {
 
@@ -34,7 +30,9 @@ public class pCreateOrder extends JPanel {
 	private JHintTextField txtfCustomer;
 	private JList<OrderLine> listProducts;
 	private JScrollPane scrlCustomer;
-
+	
+	private OrderController orderController;
+	
 	/**
 	 * Create the panel.
 	 */

@@ -1,15 +1,16 @@
 package model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class SalesPrice {
 	private double amount;
 	private LocalDate startDate;
 
-	public SalesPrice(double amount, LocalDate startDate) {
+	public SalesPrice(double amount, LocalDate date) {
 		super();
 		this.amount = amount;
-		this.startDate = startDate;
+		this.startDate = date;
 	}
 	
 	public double getAmount() {

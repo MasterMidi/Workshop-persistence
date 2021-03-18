@@ -27,17 +27,20 @@ public class ProductController {
 	return null;
     }
 
-    public SellableProduct getSellableProduct(int id) {
+    public SellableProduct getSellableProduct(int ean) {
 	boolean found = false;
 	int i = 0;
 	SellableProduct res = null;
 	SellableProduct currProd = null;
 	while (!found && i < products.size()) {
 	    currProd = products.get(i);
-	    if (currProd.getProduct().getEan() == id) {
+	    if (currProd.getProduct().getEan() == ean) {
 		res = currProd;
+		found = true;
 	    }
+	    i++;
 	}
+	
 	return res;
     }
 

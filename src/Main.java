@@ -1,10 +1,10 @@
 import java.util.List;
 
 import controller.OrderController;
-import Enums.OrderType;
-import Enviroment.ENV;
 import db.DBConnection;
 import db.DataAccessException;
+import enums.OrderType;
+import enviroment.ENV;
 import model.OrderLine;
 import model.SellableProduct;
 
@@ -23,10 +23,7 @@ public class Main {
 	}
 
 	OrderController orderCon = new OrderController(OrderType.SaleOrder);
-	List<SellableProduct> products = orderCon.searchSellableProducts("shirt");
-	for (SellableProduct curr : products) {
-	    System.out.println(curr.getProduct().getName());
-	}
+	List<SellableProduct> products = orderCon.searchSellableProducts("genuine leather cowboy hat");
 
 	orderCon.addSellableProduct(products.get(0).getProduct().getEan(), 10);
 

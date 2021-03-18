@@ -5,12 +5,12 @@ public class OrderLine {
 	private int quantity;
 	private Double price;
 	
-	
+	//TODO make the price not hard coded
 	public OrderLine(SellableProduct product, int quantity) {
 		super();
 		this.product = product;
 		this.quantity = quantity;
-		this.price = this.product.getPrice();
+		this.price = product.getPrice();
 	}
 
 

@@ -90,7 +90,7 @@ create table product(
 	clothing_size int,
 	clothing_color varchar(50),
 	equipment_type varchar(100),
-	gun_replica_cilbre int,
+	gun_replica_caliber int,
 	gun_replica_material varchar(50),
 	constraint fk_product_supplier_id foreign key(supplier_id) references supplier(id)
 );

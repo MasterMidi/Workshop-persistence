@@ -37,7 +37,7 @@ public class DatabaseProduct implements IDbProduct {
 
 	} catch (SQLException ex) {
 	    ex.printStackTrace();
-	} finally
+	} finally //TODO: Discuss whether this should be removed or not
 
 	{
 	    DBConnection.getInstance().disconnect();

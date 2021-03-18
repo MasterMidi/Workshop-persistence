@@ -1,10 +1,10 @@
 import java.util.List;
 
 import controller.OrderController;
-import Enums.OrderType;
-import Enviroment.ENV;
 import db.DBConnection;
 import db.DataAccessException;
+import enums.OrderType;
+import enviroment.ENV;
 import model.OrderLine;
 import model.SellableProduct;
 

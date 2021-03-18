@@ -2,8 +2,8 @@ package controller;
 
 import java.util.List;
 
-import Enums.OrderType;
 import db.DataAccessException;
+import enums.OrderType;
 import model.Customer;
 import model.Order;
 import model.OrderLine;

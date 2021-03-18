@@ -1,4 +1,4 @@
-package DBinterface;
+package db.dao;
 
 import java.util.List;
 

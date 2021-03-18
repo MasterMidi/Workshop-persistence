@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import DBinterface.IDbProduct;
+import db.dao.IDbProduct;
 import model.Clothing;
 import model.Equipment;
 import model.GunReplica;

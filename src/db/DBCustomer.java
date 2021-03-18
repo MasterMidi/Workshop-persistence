@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import DBinterface.ICustomerDB;
+import db.dao.ICustomerDB;
 import model.ContactInfo;
 import model.Customer;
 import model.DiscountGroup;

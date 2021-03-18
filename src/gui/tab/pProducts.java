@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import gui.components.JHintTextField;
+import gui.component.JHintTextField;
 
 public class pProducts extends JPanel {
 	private JHintTextField txtfBarcode;

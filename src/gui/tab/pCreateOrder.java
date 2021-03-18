@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import controller.OrderController;
-import gui.components.JHintTextField;
+import gui.component.JHintTextField;
 import model.OrderLine;
 
 public class pCreateOrder extends JPanel {

@@ -1,10 +1,19 @@
 package controller;
 
+import db.DBCustomer;
+import db.DataAccessException;
 import model.Customer;
 
 public class CustomerController {
-	public Customer findCustomer(String phoneNr)
+	private DBCustomer dbCustomer;
+	
+	public CustomerController()
 	{
-		return null;
+		this.dbCustomer = new DBCustomer();
+	}
+	
+	public Customer findCustomer(String phoneNr) throws DataAccessException
+	{
+		return dbCustomer.findCustomer(phoneNr);
 	}
 }

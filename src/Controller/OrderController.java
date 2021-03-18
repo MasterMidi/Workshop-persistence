@@ -14,10 +14,12 @@ import model.SellableProduct;
 public class OrderController {
     private Order order;
     private ProductController prodCtrl;
+    CustomerController customerController;
 
     public OrderController(OrderType orderType) {
 	createOrder(orderType);
 	this.prodCtrl = new ProductController();
+	this.customerController = new CustomerController();
 
     }
 
@@ -44,9 +46,9 @@ public class OrderController {
 
     }
     
-    public Customer findCustomer(String phoneNr)
+    public Customer findCustomer(String phoneNr) throws DataAccessException
     {
-    	CustomerController customerController = new CustomerController();
+    	
     	return customerController.findCustomer(phoneNr);
     }
 

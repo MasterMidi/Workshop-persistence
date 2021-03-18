@@ -1,6 +1,5 @@
 package db;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,8 +33,8 @@ public class DatabaseProduct implements IDbProduct {
 	    productSearch.setString(1, "%" + name + "%");
 	    ResultSet rs = productSearch.executeQuery();
 	    Products = buildObjects(rs);
-	    Array test = new Array<int>{ 1, 2, 3 };
-	    sellableProductSearch.setArray(1, test);
+
+	    sellableProductSearch.setString(1, "2");
 	    rs = sellableProductSearch.executeQuery();
 	    res = buildSellableProducts(Products, rs);
 	} catch (SQLException ex) {

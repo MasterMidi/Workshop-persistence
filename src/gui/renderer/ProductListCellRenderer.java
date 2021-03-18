@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 
 import model.OrderLine;
+import model.SellableProduct;
 
 public class ProductListCellRenderer extends DefaultListCellRenderer {
 
@@ -15,9 +16,9 @@ public class ProductListCellRenderer extends DefaultListCellRenderer {
 			boolean cellHasFocus) {
 
 		Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-		if (renderer instanceof JLabel && value instanceof OrderLine) {
-			OrderLine castedValue = (OrderLine) value;
-			String text = String.format("%d x %s - %s,-", castedValue.getQuantity(), castedValue.getProduct().getProduct().getName(), castedValue.getPrice());
+		if (renderer instanceof JLabel && value instanceof SellableProduct) {
+			SellableProduct castedValue = (SellableProduct) value;
+			String text = String.format("%s", castedValue.getProduct().getName());
 			((JLabel) renderer).setText(text);
 		}
 

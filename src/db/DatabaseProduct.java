@@ -34,7 +34,7 @@ public class DatabaseProduct implements IDbProduct {
 	    productSearch.setString(1, "%" + name + "%");
 	    ResultSet rs = productSearch.executeQuery();
 	    Products = buildObjects(rs);
-	    Array test = new Array<int>{ 1, 2, 3 };
+
 	    sellableProductSearch.setArray(1, test);
 	    rs = sellableProductSearch.executeQuery();
 	    res = buildSellableProducts(Products, rs);

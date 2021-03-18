@@ -39,8 +39,8 @@ public class OrderController {
 	return null;
     }
 
-    public void addSellableProduct(int id, int quantity) {
-	SellableProduct product = prodCtrl.getSellableProduct(id);
+    public void addSellableProduct(int ean, int quantity) {
+	SellableProduct product = prodCtrl.getSellableProduct(ean);
 	((SaleOrder) this.order).addNewOrderline(product, quantity);
     }
 

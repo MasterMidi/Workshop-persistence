@@ -37,10 +37,11 @@ public abstract class Product {
 
     }
 
-    // TODO return last added price, should return the active price instead
     public double getPrice() {
-	Double res = null;
-	res = prices.get(prices.size() - 1).getAmount();
+	Double res = 0d;
+	if (prices != null && prices.size() > 0 ) {
+		res = prices.get(prices.size() - 1).getAmount();
+	}
 	return res;
     }
 

@@ -9,6 +9,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import db.DBConnection;
+import db.DataAccessException;
+import enviroment.ENV;
 import gui.tab.pCreateOrder;
 
 public class MainUI extends JFrame {
@@ -19,6 +22,10 @@ public class MainUI extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		DBConnection.setServerAddress(ENV.db_host);
+		DBConnection.setDBName(ENV.db_name);
+		DBConnection.setDBLogin(ENV.db_user, ENV.db_password);
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -34,8 +41,9 @@ public class MainUI extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws DataAccessException 
 	 */
-	public MainUI() {
+	public MainUI() throws DataAccessException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 736, 540);
 		contentPane = new JPanel();

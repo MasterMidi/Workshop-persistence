@@ -13,7 +13,9 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -21,22 +23,29 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import controller.OrderController;
+import db.DataAccessException;
+import enums.OrderType;
 import gui.component.JHintTextField;
+import gui.renderer.ProductListCellRenderer;
 import model.OrderLine;
+import model.Product;
+import model.SellableProduct;
 
 public class pCreateOrder extends JPanel {
 
 	private JHintTextField txtfProduct;
 	private JHintTextField txtfCustomer;
-	private JList<OrderLine> listProducts;
+	private JList<SellableProduct> listProducts;
 	private JScrollPane scrlCustomer;
 	
 	private OrderController orderController;
+	private DefaultListModel<SellableProduct> productListModel;
 	
 	/**
 	 * Create the panel.
+	 * @throws DataAccessException 
 	 */
-	public pCreateOrder() {
+	public pCreateOrder() throws DataAccessException {
 		setMinimumSize(new Dimension(400, 250));
 		addComponentListener(new ComponentAdapter() {
 			@Override
@@ -60,6 +69,11 @@ public class pCreateOrder extends JPanel {
 		txtfProduct.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				try {
+					searchProducts();
+				} catch (DataAccessException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		txtfProduct.setColumns(10);
@@ -97,7 +111,7 @@ public class pCreateOrder extends JPanel {
 
 		listProducts = new JList<>();
 		listProducts.setMinimumSize(new Dimension(200, 0));
-		listProducts.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		listProducts.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		scrlProducts.setViewportView(listProducts);
 		
 		JLabel lblNameRow = new JLabel("Navn:");
@@ -184,8 +198,19 @@ public class pCreateOrder extends JPanel {
 		init();
 	}
 
-	private void init() {
-
+	private void init() throws DataAccessException {
+		orderController = new OrderController(OrderType.SaleOrder);
+		productListModel = new DefaultListModel<>();
+		listProducts.setModel(productListModel);
+		listProducts.setCellRenderer(new ProductListCellRenderer());
+		searchProducts();
+	}
+	
+	private void searchProducts() throws DataAccessException {
+		String searchQuery = txtfProduct.getText();
+		List<SellableProduct> currList = orderController.searchSellableProducts(searchQuery);
+		productListModel.clear();
+		productListModel.addAll(currList);
 	}
 
 }

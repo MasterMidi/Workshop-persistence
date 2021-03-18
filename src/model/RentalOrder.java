@@ -3,40 +3,44 @@ package model;
 import java.time.LocalDate;
 
 public class RentalOrder extends Order {
-	private LocalDate startDate;
-	private LocalDate endDate;
-	private RentableProductCopy rentableProductCopy;
-	
-	public RentalOrder(RentableProductCopy rentableProductCopy ,int orderNumber, LocalDate dealDate, String status, double price, LocalDate startDate,
-			LocalDate endDate) {
-		super(orderNumber, dealDate, status, price);
-		this.startDate = startDate;
-		this.rentableProductCopy = rentableProductCopy;
-		this.endDate = endDate;
-	}
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private RentableProductCopy rentableProductCopy;
 
-	public RentableProductCopy getRentableProductCopy() {
-		return rentableProductCopy;
-	}
+    public RentalOrder(RentableProductCopy rentableProductCopy, int orderNumber, LocalDate dealDate, String status,
+	    double price, LocalDate startDate, LocalDate endDate) {
+	super(orderNumber, dealDate, status, price);
+	this.startDate = startDate;
+	this.rentableProductCopy = rentableProductCopy;
+	this.endDate = endDate;
+    }
 
-	public void setRentableProductCopy(RentableProductCopy rentableProductCopy) {
-		this.rentableProductCopy = rentableProductCopy;
-	}
+    public RentalOrder() {
+	this(null, -1, LocalDate.now(), "Processing", 0, LocalDate.now(), LocalDate.now().plusDays(7));
+    }
 
-	public LocalDate getStartDate() {
-		return startDate;
-	}
+    public RentableProductCopy getRentableProductCopy() {
+	return rentableProductCopy;
+    }
 
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
+    public void setRentableProductCopy(RentableProductCopy rentableProductCopy) {
+	this.rentableProductCopy = rentableProductCopy;
+    }
 
-	public LocalDate getEndDate() {
-		return endDate;
-	}
+    public LocalDate getStartDate() {
+	return startDate;
+    }
 
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
+    public void setStartDate(LocalDate startDate) {
+	this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+	return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+	this.endDate = endDate;
+    }
 
 }

@@ -145,6 +145,16 @@ public class DBConnection {
 		}
 		return res;
 	}
+	
+	public void executeInsert(PreparedStatement ps) throws DataAccessException {
+		// requires perpared statement to be created with the additional argument PreparedStatement.RETURN_GENERATED_KEYS
+		try {
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new DataAccessException("Could not execute insert", e);
+		}
+	}
 
 	public Connection getConnection() {
 		return connection;

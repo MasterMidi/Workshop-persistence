@@ -41,7 +41,7 @@ public class pCreateOrder extends JPanel {
 	private JHintTextField txtfCustomer;
 	private JList<SellableProduct> listProducts;
 	private JScrollPane scrlCustomer;
-	
+
 	private OrderController orderController;
 	private DefaultListModel<SellableProduct> productListModel;
 	private JLabel lblName;
@@ -50,10 +50,11 @@ public class pCreateOrder extends JPanel {
 	private JScrollPane scrlProducts;
 	private DefaultListModel<OrderLine> orderlineListModel;
 	private JList<OrderLine> listOrderLines;
-	
+
 	/**
 	 * Create the panel.
-	 * @throws DataAccessException 
+	 * 
+	 * @throws DataAccessException
 	 */
 	public pCreateOrder() throws DataAccessException {
 		setMinimumSize(new Dimension(400, 250));
@@ -128,7 +129,7 @@ public class pCreateOrder extends JPanel {
 		listProducts.setMinimumSize(new Dimension(200, 0));
 		listProducts.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		scrlProducts.setViewportView(listProducts);
-		
+
 		JLabel lblNameRow = new JLabel("Navn:");
 		GridBagConstraints gbc_lblNameRow = new GridBagConstraints();
 		gbc_lblNameRow.anchor = GridBagConstraints.WEST;
@@ -136,7 +137,7 @@ public class pCreateOrder extends JPanel {
 		gbc_lblNameRow.gridx = 3;
 		gbc_lblNameRow.gridy = 2;
 		pMain.add(lblNameRow, gbc_lblNameRow);
-		
+
 		lblName = new JLabel("navn...");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.anchor = GridBagConstraints.EAST;
@@ -144,7 +145,7 @@ public class pCreateOrder extends JPanel {
 		gbc_lblName.gridx = 4;
 		gbc_lblName.gridy = 2;
 		pMain.add(lblName, gbc_lblName);
-		
+
 		JLabel lblNumberRow = new JLabel("Telefon nr.:");
 		GridBagConstraints gbc_lblNumberRow = new GridBagConstraints();
 		gbc_lblNumberRow.anchor = GridBagConstraints.WEST;
@@ -152,7 +153,7 @@ public class pCreateOrder extends JPanel {
 		gbc_lblNumberRow.gridx = 3;
 		gbc_lblNumberRow.gridy = 3;
 		pMain.add(lblNumberRow, gbc_lblNumberRow);
-		
+
 		lblNumber = new JLabel("telefon...");
 		GridBagConstraints gbc_lblNumber = new GridBagConstraints();
 		gbc_lblNumber.anchor = GridBagConstraints.EAST;
@@ -160,7 +161,7 @@ public class pCreateOrder extends JPanel {
 		gbc_lblNumber.gridx = 4;
 		gbc_lblNumber.gridy = 3;
 		pMain.add(lblNumber, gbc_lblNumber);
-		
+
 		JLabel lblAddressRow = new JLabel("Addresse:");
 		GridBagConstraints gbc_lblAddressRow = new GridBagConstraints();
 		gbc_lblAddressRow.anchor = GridBagConstraints.WEST;
@@ -168,7 +169,7 @@ public class pCreateOrder extends JPanel {
 		gbc_lblAddressRow.gridx = 3;
 		gbc_lblAddressRow.gridy = 4;
 		pMain.add(lblAddressRow, gbc_lblAddressRow);
-		
+
 		lblAddress = new JLabel("addresse...");
 		GridBagConstraints gbc_lblAddress = new GridBagConstraints();
 		gbc_lblAddress.anchor = GridBagConstraints.EAST;
@@ -176,7 +177,7 @@ public class pCreateOrder extends JPanel {
 		gbc_lblAddress.gridx = 4;
 		gbc_lblAddress.gridy = 4;
 		pMain.add(lblAddress, gbc_lblAddress);
-		
+
 		JScrollPane scrlProducts_1 = new JScrollPane();
 		GridBagConstraints gbc_scrlProducts_1 = new GridBagConstraints();
 		gbc_scrlProducts_1.gridwidth = 2;
@@ -185,10 +186,10 @@ public class pCreateOrder extends JPanel {
 		gbc_scrlProducts_1.gridx = 3;
 		gbc_scrlProducts_1.gridy = 5;
 		pMain.add(scrlProducts_1, gbc_scrlProducts_1);
-		
+
 		listOrderLines = new JList();
 		scrlProducts_1.setViewportView(listOrderLines);
-		
+
 		JButton btnAdd = new JButton("Tilf\u00F8j");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -220,6 +221,11 @@ public class pCreateOrder extends JPanel {
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try {
+					resetScreen();
+				} catch (DataAccessException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		pBottom.add(btnCancel);
@@ -236,30 +242,32 @@ public class pCreateOrder extends JPanel {
 		listOrderLines.setModel(orderlineListModel);
 		listOrderLines.setCellRenderer(new OrderLineListCellRenderer());
 		searchProducts();
+		searchCustomers();
 	}
-	
+
 	private void searchProducts() throws DataAccessException {
 		String searchQuery = txtfProduct.getText();
 		List<SellableProduct> currList = orderController.searchSellableProducts(searchQuery);
 		productListModel.clear();
 		productListModel.addAll(currList);
 	}
-	
+
 	private void searchCustomers() throws DataAccessException {
 		String searchQuery = txtfCustomer.getText();
 		Customer customer = orderController.findCustomer(searchQuery);
-		if(customer != null) {
+		if (customer != null) {
 			lblName.setText(customer.getContactInfo().getName());
 			lblNumber.setText(customer.getContactInfo().getPhone());
 			lblAddress.setText(customer.getContactInfo().getAddress());
-			
+
 			orderController.attachCustomer();
 		} else {
-			JOptionPane.showMessageDialog(new JFrame(), "Error, no customer with number: " + searchQuery);
+			// JOptionPane.showMessageDialog(new JFrame(), "Error, no customer with number:
+			// " + searchQuery);
 		}
-		
+
 	}
-	
+
 	protected void addProduct() {
 		SellableProduct product = listProducts.getSelectedValue();
 		orderController.addSellableProduct(product.getProduct().getEan(), 1);
@@ -267,11 +275,22 @@ public class pCreateOrder extends JPanel {
 		orderlineListModel.clear();
 		orderlineListModel.addAll(currList);
 	}
-	
+
 	protected void finishSale() {
-		if(orderController.getOrderlinesSaleOrder().size() > 0 && orderController.getOrder().getCustomer() != null) {
+		if (orderController.getOrderlinesSaleOrder().size() > 0 && orderController.getOrder().getCustomer() != null) {
 			boolean success = orderController.finishSale();
+			if (!success) {
+				JOptionPane.showMessageDialog(new JFrame(), "Something went wrong, try again");
+			}
 		}
+	}
+
+	private void resetScreen() throws DataAccessException {
+		init();
+		
+		lblName.setText("...");
+		lblNumber.setText("...");
+		lblAddress.setText("...");
 	}
 
 }

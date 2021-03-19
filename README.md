@@ -8,6 +8,9 @@
 Import scripts/database_create_script.sql into your database. This will create the nessecary tables<br>
 Import scripts/database_insert_data_script in to your database. This will create some dummy data
 
+The program consist of two mains:
+default-package/main.java which works as a "tryMe", and gui/MainUI.java which features a UI.
+
 
 ## Authors
 1. [Julius Bendt](https://github.com/Julius-Bendt),

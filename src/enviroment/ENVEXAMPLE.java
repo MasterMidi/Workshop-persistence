@@ -1,8 +1,6 @@
 package enviroment;
-/*
-package Enviroment;
 
-public class ENV {
+public class ENVEXAMPLE {
 	
 	public static boolean debug = false;
 	
@@ -11,4 +9,4 @@ public class ENV {
 	public static final String db_password = "qwerty";
 	public static final String db_name = "dmab0920_11111";
 }
-*/
+

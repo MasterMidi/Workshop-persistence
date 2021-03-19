@@ -10,7 +10,7 @@ import model.ContactInfo;
 import model.Customer;
 import model.DiscountGroup;
 
-public class DBCustomer implements ICustomerDB {
+public class CustomerDB implements ICustomerDB {
 	private final String FINDCUSTOMER = "SELECT phone_number, name,email,zipcode,city,address, customer_number,discount_id, customer.id as customer_id, type as discount_type, discount FROM customer "
 			+ "INNER JOIN contact_info on customer.customer_number = customer.customer_number "
 			+ "INNER JOIN discount_group on discount_id = discount_group.id " + "WHERE contact_info.phone_number = ?";

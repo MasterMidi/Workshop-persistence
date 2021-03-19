@@ -20,7 +20,7 @@ import model.Supplier;
 
 public class DatabaseProduct implements IDbProduct {
 
-    private final static String PRODUCTSEARCHSELLABLE = "SELECt product.id,ean,name,description,purchase_price,country_of_origin,bought_date,supplier_id,type,clothing_size,clothing_color,equipment_type,gun_replica_caliber,gun_replica_material,sellable_product.id as sp_id, sellable_product.min_stock as sp_min_stock FROM product\r\n"
+    private final static String PRODUCTSEARCHSELLABLE = "SELECT product.id,ean,name,description,purchase_price,country_of_origin,bought_date,supplier_id,type,clothing_size,clothing_color,equipment_type,gun_replica_caliber,gun_replica_material,sellable_product.id as sp_id, sellable_product.min_stock as sp_min_stock FROM product\r\n"
     		+ "INNER JOIN sellable_product on sellable_product.id = product.id\r\n"
     		+ "WHERE product.name LIKE ?";
     private final static String SEARCH_PRODUCT_PRICE = "select * from sale_price where product_id = ? and start_date <= getdate() order by start_date asC";
@@ -37,11 +37,7 @@ public class DatabaseProduct implements IDbProduct {
 
 	} catch (SQLException ex) {
 	    ex.printStackTrace();
-	} /*finally //TODO: Discuss whether this should be removed or not. no?? because then we cant use the db anymore, since there only is one connection, sinceDBConnection is singleton
-
-	{
-	    DBConnection.getInstance().disconnect();
-	}*/
+	}
 
 	return res;
     }

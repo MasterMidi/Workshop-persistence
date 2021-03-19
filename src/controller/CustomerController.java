@@ -6,14 +6,19 @@ import model.Customer;
 
 public class CustomerController {
 	private DBCustomer dbCustomer;
-	
-	public CustomerController()
-	{
+	private Customer customer;
+
+	public CustomerController() {
 		this.dbCustomer = new DBCustomer();
 	}
-	
+
 	public Customer findCustomer(String phoneNr) throws DataAccessException
 	{
-		return dbCustomer.findCustomer(phoneNr);
+		this.customer = dbCustomer.findCustomer(phoneNr);
+		return customer;
+	}
+
+	public Customer getCustomer() {
+		return customer;
 	}
 }

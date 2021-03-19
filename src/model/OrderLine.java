@@ -37,6 +37,10 @@ public class OrderLine {
 	public Double getPrice() {
 		return price;
 	}
+	
+	public Double getPriceTotal() {
+		return price * quantity;
+	}
 
 
 	public void setPrice(Double price) {

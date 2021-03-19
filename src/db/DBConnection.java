@@ -130,7 +130,7 @@ public class DBConnection {
 	}
 
 	public int executeInsertWithIdentity(PreparedStatement ps) throws DataAccessException {
-		// requires perpared statement to be created with the additional argument PreparedStatement.RETURN_GENERATED_KEYS  
+		// requires prepared statement to be created with the additional argument PreparedStatement.RETURN_GENERATED_KEYS
 		int res = -1;
 		try {
 			res = ps.executeUpdate();
@@ -144,6 +144,16 @@ public class DBConnection {
 			throw new DataAccessException("Could not execute insert", e);
 		}
 		return res;
+	}
+	
+	public void executeInsert(PreparedStatement ps) throws DataAccessException {
+		// requires prepared statement to be created with the additional argument PreparedStatement.RETURN_GENERATED_KEYS
+		try {
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new DataAccessException("Could not execute insert", e);
+		}
 	}
 
 	public Connection getConnection() {

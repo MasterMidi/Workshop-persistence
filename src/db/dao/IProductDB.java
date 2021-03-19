@@ -7,7 +7,7 @@ import model.Product;
 import model.RentableProductCopy;
 import model.SellableProduct;
 
-public interface IDbProduct {
+public interface IProductDB {
 
     public List<SellableProduct> searchProductSellable(String name) throws DataAccessException;
     

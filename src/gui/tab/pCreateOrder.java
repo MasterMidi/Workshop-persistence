@@ -212,7 +212,11 @@ public class pCreateOrder extends JPanel {
 		btnConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				finishSale();
+				try {
+					finishSale();
+				} catch (DataAccessException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		pBottom.add(btnConfirm);
@@ -276,11 +280,13 @@ public class pCreateOrder extends JPanel {
 		orderlineListModel.addAll(currList);
 	}
 
-	protected void finishSale() {
+	protected void finishSale() throws DataAccessException {
 		if (orderController.getOrderlinesSaleOrder().size() > 0 && orderController.getOrder().getCustomer() != null) {
 			boolean success = orderController.finishSale();
 			if (!success) {
 				JOptionPane.showMessageDialog(new JFrame(), "Something went wrong, try again");
+			} else {
+				resetScreen();
 			}
 		}
 	}

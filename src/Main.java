@@ -24,12 +24,6 @@ public class Main {
 			System.out.println("Connection to DB failed");
 		}
 
-		CustomerController customerController = new CustomerController();
-		Customer customer = customerController.findCustomer("20202020");
-
-		System.out.println("Found " + customer.getContactInfo().getName() + " with the email "
-				+ customer.getContactInfo().getEmail() + " from phone number 20202020");
-
 		OrderController orderCon = new OrderController(OrderType.SaleOrder);
 		List<SellableProduct> products = orderCon.searchSellableProducts("genuine leather cowboy hat");
 
@@ -40,6 +34,13 @@ public class Main {
 			System.out.println(curr.getProduct().getProduct().getName());
 			System.out.println(curr.getPrice());
 		}
+
+		Customer customer = orderCon.findCustomer("29292929");
+		System.out.println("Found " + customer.getContactInfo().getName() + " with the email "
+				+ customer.getContactInfo().getEmail() + " from phone number 29292929");
+		orderCon.attachCustomer();
+
+		orderCon.finishSale();
 
 		System.out.println("END");
 	}

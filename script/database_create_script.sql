@@ -3,7 +3,7 @@ use dmab0920_1086225;
 --repeat until no more errors
 declare @count int;
 set @count = 1;
-while @count <= 5
+while @count <= 6
 begin
 	print @count;
 	exec sp_MSforeachtable @command1 = "DROP TABLE ?";
@@ -45,7 +45,6 @@ create table supplier(
 
 create table [order](
 	id int primary key identity(1,1),
-	order_number int unique not null,
 	deal_date date,
 	status varchar(50),
 	price int,

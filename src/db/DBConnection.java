@@ -130,7 +130,7 @@ public class DBConnection {
 	}
 
 	public int executeInsertWithIdentity(PreparedStatement ps) throws DataAccessException {
-		// requires perpared statement to be created with the additional argument PreparedStatement.RETURN_GENERATED_KEYS  
+		// requires perpared statement to be created with the additional argument PreparedStatement.RETURN_GENERATED_KEYS
 		int res = -1;
 		try {
 			res = ps.executeUpdate();

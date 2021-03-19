@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import db.dao.IDbProduct;
+import db.dao.IProductDB;
 import model.Clothing;
 import model.Equipment;
 import model.GunReplica;
@@ -18,7 +18,7 @@ import model.SalesPrice;
 import model.SellableProduct;
 import model.Supplier;
 
-public class DatabaseProduct implements IDbProduct {
+public class DatabaseProduct implements IProductDB {
 
 	private final static String PRODUCTSEARCHSELLABLE = "SELECT product.id,ean,name,description,purchase_price,country_of_origin,bought_date,supplier_id,type,clothing_size,clothing_color,equipment_type,gun_replica_caliber,gun_replica_material,sellable_product.id as sp_id, sellable_product.min_stock as sp_min_stock FROM product\r\n"
 			+ "INNER JOIN sellable_product on sellable_product.id = product.id\r\n" + "WHERE product.name LIKE ?";

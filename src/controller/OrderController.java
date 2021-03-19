@@ -47,7 +47,7 @@ public class OrderController {
 
 	public void addSellableProduct(int ean, int quantity) {
 		SellableProduct product = prodCtrl.getSellableProduct(ean);
-		((SaleOrder) this.order).addNewOrderline(product, quantity);
+		((SaleOrder) this.order).addOrderline(product, quantity);
 	}
 
 	public List<OrderLine> getOrderlinesSaleOrder() {

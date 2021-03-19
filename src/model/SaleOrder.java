@@ -57,7 +57,7 @@ public class SaleOrder extends Order {
 		this.deliveryDate = deliveryDate;
 	}
 
-	public void addNewOrderline(SellableProduct product, int quantity) {
+	public void addOrderline(SellableProduct product, int quantity) {
 		orderLines.add(new OrderLine(product, quantity));
 	}
 

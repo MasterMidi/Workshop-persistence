@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.DataAccessException;
-import db.DatabaseProduct;
+import db.DBProduct;
 import model.RentableProductCopy;
 import model.SellableProduct;
 
 public class ProductController {
     private List<SellableProduct> products;
-    private DatabaseProduct dbProduct;
+    private DBProduct dbProduct;
 
     public ProductController() {
 	this.products = new ArrayList<>();
-	this.dbProduct = new DatabaseProduct();
+	this.dbProduct = new DBProduct();
     }
 
     public List<SellableProduct> searchProductSellable(String name) throws DataAccessException {

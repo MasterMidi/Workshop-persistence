@@ -147,7 +147,7 @@ create table rental_connection(
 create table orderline(
 	id int primary key identity(1,1),
 	amount int,
-	price int,
+	price float,
 	order_id int,
 	product_id int,
 	unique(order_id, product_id),

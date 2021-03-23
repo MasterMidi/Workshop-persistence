@@ -286,6 +286,7 @@ public class pCreateOrder extends JPanel {
 			if (!success) {
 				JOptionPane.showMessageDialog(new JFrame(), "Something went wrong, try again");
 			} else {
+				JOptionPane.showMessageDialog(new JFrame(), "Order created with ordernumber: " + orderController.getOrder().getId());
 				resetScreen();
 			}
 		}
